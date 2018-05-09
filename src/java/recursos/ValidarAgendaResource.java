@@ -46,15 +46,15 @@ public class ValidarAgendaResource {
             NuevoXSD.nuevo();
         }
         ImportarExportar ie = new ImportarExportar("Agenda.xml");
-        System.out.println("aqui imprimo la primera persona1");
-        System.out.println(a.getPersonas().get(0).getNombre());
-        System.out.println(a.getPersonas().get(0).getEmail());
-        System.out.println(a.getPersonas().get(0).getTelefono());
+//        System.out.println("aqui imprimo la primera persona1");
+//        System.out.println(a.getPersonas().get(0).getNombre());
+//        System.out.println(a.getPersonas().get(0).getEmail());
+//        System.out.println(a.getPersonas().get(0).getTelefono());
 
 
         File f = ie.guardarAgenda(a);
-        System.out.println("aqui imprimo la primera persona2");
-        System.out.println(a.getPersonas().get(0).getNombre());
+//        System.out.println("aqui imprimo la primera persona2");
+//        System.out.println(a.getPersonas().get(0).getNombre());
         Source xmlFile = new StreamSource(f);   
         SchemaFactory schemaFactory = SchemaFactory
                 .newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
@@ -63,10 +63,10 @@ public class ValidarAgendaResource {
             javax.xml.validation.Validator validator = schema.newValidator();
             validator.validate(xmlFile);
             System.out.println(xmlFile.getSystemId() + " is valid");
-            return "true";
+            return "--------\n La agenda es válida \n--------";
         } catch (SAXException e) {
             System.out.println(xmlFile.getSystemId() + " is NOT valid reason:" + e);
-            return "false";
+            return "--------\n La agenda no es válida\n --------";
         } catch (IOException ex) {
             Logger.getLogger(ValidarAgendaResource.class.getName()).log(Level.SEVERE, null, ex);
         }
